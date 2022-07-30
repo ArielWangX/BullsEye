@@ -1,0 +1,8 @@
+ <resources>
+    <string name="app_name">BullsEye</string>
+    <string name="instruction_text">PUT THE BULLSEYE AS CLOSE AS YOU CAN TO</string>
+     <string name="target_text">67</string>
+     <string name="seekbar_min_value">1</string>
+     <string name="seekbar_max_value">100</string>
+     <string name="hit_me_button">Hit Me</string>
+ </resources>
