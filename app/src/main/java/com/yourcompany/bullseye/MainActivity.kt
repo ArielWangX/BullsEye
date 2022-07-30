@@ -15,5 +15,6 @@ class MainActivity : AppCompatActivity() {
                                     //finish assess to layout file.
 
         binding.targetTextView.text = "52"  //start to assess the view and change the text.
+        binding.hitMeButton.height = 200
     }
 }
