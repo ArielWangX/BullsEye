@@ -5,4 +5,7 @@
      <string name="seekbar_min_value">1</string>
      <string name="seekbar_max_value">100</string>
      <string name="hit_me_button">Hit Me</string>
+     <string name="result_dialog_title" />
+     <string name="result_dialog_message" />
+     <string name="hit_me_button_text" />
  </resources>
