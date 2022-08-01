@@ -1,11 +1,11 @@
- <resources>
+<resources>
     <string name="app_name">BullsEye</string>
     <string name="instruction_text">PUT THE BULLSEYE AS CLOSE AS YOU CAN TO</string>
-     <string name="target_text">67</string>
-     <string name="seekbar_min_value">1</string>
-     <string name="seekbar_max_value">100</string>
-     <string name="hit_me_button">Hit Me</string>
-     <string name="result_dialog_title" >Hello World!</string>
-     <string name="result_dialog_message" >The slider\'s value is %1$d</string>
-     <string name="result_dialog_button_text" >AWESOME!</string>
- </resources>
+    <string name="target_text">67</string>
+    <string name="seekbar_min_value">1</string>
+    <string name="seekbar_max_value">100</string>
+    <string name="hit_me_button">Hit Me</string>
+    <string name="result_dialog_title">Hello World!</string>
+    <string name="result_dialog_message">The slider\'s value is %1$d. \nYou scored %2$d points this round.</string>
+    <string name="result_dialog_button_text">AWESOME!</string>
+</resources>
