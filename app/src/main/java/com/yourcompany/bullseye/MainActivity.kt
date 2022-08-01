@@ -3,6 +3,7 @@ package com.yourcompany.bullseye
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import android.widget.SeekBar
 import androidx.appcompat.app.AlertDialog
 import com.yourcompany.bullseye.databinding.ActivityMainBinding
@@ -12,6 +13,8 @@ import kotlin.random.Random
 class MainActivity : AppCompatActivity() {
     private var sliderValue = 0
     private var targetValue = Random.nextInt(1, 100)
+    private var totalScore = 0
+    private var totalRound = 1
 
     private lateinit var binding: ActivityMainBinding        //binding type based on layout file (need dependency)
 
@@ -27,9 +30,13 @@ class MainActivity : AppCompatActivity() {
 
         binding.targetTextView.text = targetValue.toString()
 
+        binding.gameRoundTextView?.text = totalRound.toString()
+
         binding.hitMeButton.setOnClickListener {
-            Log.i("Button Click Event", "You clicked the Hit Me Button")
+//            Log.i("Button Click Event", "You clicked the Hit Me Button")
             showResult()
+            totalScore += pointsForCurrentRound()
+            binding.gameScoreTextView?.text = totalScore.toString() // textview only accept strings, not integers.
         }
 
         binding.seekBar.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
@@ -79,6 +86,13 @@ class MainActivity : AppCompatActivity() {
         builder.setMessage(dialogMessage)
         builder.setPositiveButton(R.string.result_dialog_button_text) { dialog, _ ->
             dialog.dismiss()
+
+            targetValue = Random.nextInt(1, 100)        //generate new targetValue
+            binding.targetTextView.text = targetValue.toString()
+
+            totalRound += 1     //round increment
+            binding.gameRoundTextView?.text = totalRound.toString()
+
         }
 
         builder.create().show()
