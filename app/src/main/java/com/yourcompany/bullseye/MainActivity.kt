@@ -19,8 +19,6 @@ class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding        //binding type based on layout file (need dependency)
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        supportActionBar?.hide()
-
         super.onCreate(savedInstanceState)
         binding =
             ActivityMainBinding.inflate(layoutInflater)   //convert layout file to corresponding view object which can be used in Kotlin
