@@ -12,7 +12,7 @@ import kotlin.random.Random
 
 class MainActivity : AppCompatActivity() {
     private var sliderValue = 0
-    private var targetValue = Random.nextInt(1, 100)
+    private var targetValue = newTargetValue()
     private var totalScore = 0
     private var totalRound = 1
 
@@ -28,15 +28,17 @@ class MainActivity : AppCompatActivity() {
         setContentView(view)    //set the content view of this activity to the view variable
         //finish assess to layout file.
 
-        binding.targetTextView.text = targetValue.toString()
-
-        binding.gameRoundTextView?.text = totalRound.toString()
+        startNewGame()
 
         binding.hitMeButton.setOnClickListener {
 //            Log.i("Button Click Event", "You clicked the Hit Me Button")
             showResult()
             totalScore += pointsForCurrentRound()
             binding.gameScoreTextView?.text = totalScore.toString() // textview only accept strings, not integers.
+        }
+
+        binding.startOverButton?.setOnClickListener {
+            startNewGame()
         }
 
         binding.seekBar.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
@@ -54,10 +56,19 @@ class MainActivity : AppCompatActivity() {
 
     private fun differenceAmount() = abs(targetValue - sliderValue)    //single expression function
 
+    private fun newTargetValue() = Random.nextInt(1, 100)
+
     private fun pointsForCurrentRound(): Int {
         val maxScore = 100
         val difference = differenceAmount()
-        return maxScore - difference
+        val bonusPoints = if (difference == 0) {
+            100
+        } else if (difference == 1) {
+            50
+        } else (
+                0
+        )
+        return maxScore + bonusPoints - difference
 
 //        var difference = if (targetValue > sliderValue) {
 //            targetValue - sliderValue
@@ -74,6 +85,18 @@ class MainActivity : AppCompatActivity() {
 //        }
     }
 
+    private fun startNewGame() {
+        totalScore = 0
+        totalRound = 1
+        sliderValue = 50
+        targetValue = newTargetValue()
+
+        binding.gameScoreTextView?.text = totalScore.toString()
+        binding.gameRoundTextView?.text = totalRound.toString()
+        binding.targetTextView.text = targetValue.toString()
+        binding.seekBar.progress = sliderValue
+    }
+
     private fun showResult() {
         val dialogTitle = alertTitle()
         val dialogMessage =
@@ -86,7 +109,7 @@ class MainActivity : AppCompatActivity() {
         builder.setPositiveButton(R.string.result_dialog_button_text) { dialog, _ ->
             dialog.dismiss()
 
-            targetValue = Random.nextInt(1, 100)        //generate new targetValue
+            targetValue = newTargetValue()        //generate new targetValue
             binding.targetTextView.text = targetValue.toString()
 
             totalRound += 1     //round increment
@@ -102,6 +125,9 @@ class MainActivity : AppCompatActivity() {
         val title: String = when {
             difference == 0 -> {
                 getString(R.string.alert_title_1)
+            }
+            difference == 1 -> {
+                getString(R.string.alert_title_5)
             }
             difference < 5 -> {
                 getString(R.string.alert_title_2)
