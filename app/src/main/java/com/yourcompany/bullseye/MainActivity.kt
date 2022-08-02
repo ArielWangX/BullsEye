@@ -52,14 +52,18 @@ class MainActivity : AppCompatActivity() {
 
     }
 
+    private fun differenceAmount() = abs(targetValue - sliderValue)    //single expression function
+
     private fun pointsForCurrentRound(): Int {
         val maxScore = 100
+        val difference = differenceAmount()
+        return maxScore - difference
 
 //        var difference = if (targetValue > sliderValue) {
 //            targetValue - sliderValue
 //        } else if (targetValue < sliderValue) {
 //            sliderValue - targetValue
-//        } else /*(targetValue = sliderValue)*/ {
+//        } else /*(targetValue == sliderValue)*/ {
 //            0
 //        }
 
@@ -68,17 +72,12 @@ class MainActivity : AppCompatActivity() {
 //        if (difference < 0) {
 //            difference *= (-1)
 //        }
-
-        val difference = abs(targetValue - sliderValue)
-
-        return maxScore - difference
     }
 
     private fun showResult() {
-        val dialogTitle = getString(R.string.result_dialog_title)
+        val dialogTitle = alertTitle()
         val dialogMessage =
             getString(R.string.result_dialog_message, sliderValue, pointsForCurrentRound())
-//        val dialogMessage = "The slider's value is $sliderValue"
 
         val builder = AlertDialog.Builder(this)
 
@@ -96,6 +95,36 @@ class MainActivity : AppCompatActivity() {
         }
 
         builder.create().show()
+    }
+
+    private fun alertTitle(): String {
+        val difference = differenceAmount()
+        val title: String = when {
+            difference == 0 -> {
+                getString(R.string.alert_title_1)
+            }
+            difference < 5 -> {
+                getString(R.string.alert_title_2)
+            }
+            difference <= 10 -> {
+                getString(R.string.alert_title_3)
+            }
+            else -> {
+                getString(R.string.alert_title_4)
+            }
+        }
+
+        return title
+
+        //        var title: String = if (difference == 0) {
+//            getString(R.string.alert_title_1)
+//        } else if (difference < 5 ) {
+//            getString(R.string.alert_title_2)
+//        } else if (difference <= 10) {
+//            getString(R.string.alert_title_3)
+//        } else {
+//            getString(R.string.alert_title_4)
+//        }
     }
 
 }
