@@ -4,6 +4,9 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="../../../../layout/custom_preview.xml" value="0.2703804347826087" />
+        <entry key="app/src/main/res/drawable/circular_button.xml" value="0.2185" />
+        <entry key="app/src/main/res/drawable/refresh_24.xml" value="0.1815" />
+        <entry key="app/src/main/res/drawable/seekbar_progress.xml" value="0.148" />
         <entry key="app/src/main/res/layout-land/activity_main.xml" value="0.25" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.25" />
       </map>
