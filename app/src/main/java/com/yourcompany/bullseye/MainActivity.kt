@@ -1,11 +1,13 @@
 package com.yourcompany.bullseye
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.widget.SeekBar
 import androidx.appcompat.app.AlertDialog
+import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import com.yourcompany.bullseye.databinding.ActivityMainBinding
 import kotlin.math.abs
 import kotlin.random.Random
@@ -19,6 +21,8 @@ class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding        //binding type based on layout file (need dependency)
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        installSplashScreen()
+
         super.onCreate(savedInstanceState)
         binding =
             ActivityMainBinding.inflate(layoutInflater)   //convert layout file to corresponding view object which can be used in Kotlin
@@ -39,6 +43,10 @@ class MainActivity : AppCompatActivity() {
             startNewGame()
         }
 
+        binding.infoButton?.setOnClickListener {
+            navigateToAboutPage()
+        }
+
         binding.seekBar.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
             override fun onProgressChanged(seekBar: SeekBar?, progress: Int, fromUser: Boolean) {
                 sliderValue = progress
@@ -50,6 +58,11 @@ class MainActivity : AppCompatActivity() {
 
         })
 
+    }
+
+    private fun navigateToAboutPage() {
+        val intent = Intent(this,AboutActivity::class.java)
+        startActivity(intent)
     }
 
     private fun differenceAmount() = abs(targetValue - sliderValue)    //single expression function

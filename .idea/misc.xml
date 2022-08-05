@@ -7,7 +7,9 @@
         <entry key="app/src/main/res/drawable/circular_button.xml" value="0.2185" />
         <entry key="app/src/main/res/drawable/refresh_24.xml" value="0.1815" />
         <entry key="app/src/main/res/drawable/seekbar_progress.xml" value="0.148" />
+        <entry key="app/src/main/res/layout-land/activity_about.xml" value="0.21516754850088182" />
         <entry key="app/src/main/res/layout-land/activity_main.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/activity_about.xml" value="0.13722826086956522" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.25" />
       </map>
     </option>
